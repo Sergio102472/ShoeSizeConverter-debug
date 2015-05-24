@@ -1,0 +1,735 @@
+<!DOCTYPE html> 
+<html>
+   <head>
+      <title>shoe size converter</title>
+      <meta charset="UTF-8">
+	  <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="jquery.min.js"></script>
+	        <style>
+         body { 
+         font-family: arial;
+         font-size: 0.8em;
+         line-height: 3em;
+         }
+         .btn {
+         width: 50%;
+         display: inline-block;
+         margin: -1px;
+         text-align: center;
+         height: 5.2em;
+         line-height: 1.1em;
+         }
+         .btn.man { background: #d1faff; }
+         .btn.wooman { background: #ffe3f6; }
+         .btn.man i { 
+         background: url(icons.png) 0 7px no-repeat;
+         width: 70px;
+         height: 50px;
+         display: block;
+         margin: 0 auto;
+         }
+         .btn.wooman i {
+         background: url(icons.png) 0 -45px no-repeat;
+         width: 70px;
+         height: 50px;
+         display: block;
+         margin: 0 auto;
+         }
+         .body-woomen{  background: #ffe3f6; position: relative; display:none; }
+         .body-men{ background: #d1faff; position: relative;}
+         .wrap-tr:nth-child(even) {
+         background-color: rgba(255,255,255,0.5);
+         }
+         .wrap-tr:nth-child(odd) {
+         background: ;
+         }
+         .wrap-tr {
+         border-bottom: 1px solid #DBDBDB;
+         margin: -1px;
+         }
+         .rez,
+         .contry {
+         width: 43%;
+         display: inline-block;
+         text-align: right;
+         margin: -1px;
+         padding: 0 3%;
+         }
+         .contry {
+         color: #6D6D6D;
+         }
+         .rez {
+         text-align: left;
+         font-weight: bold;
+         }
+         .group {
+		 
+      
+         font-weight: bold;
+         display: none;
+         background: #fff;
+         width: 48%;
+         
+         position: absolute;
+         right: 8px;
+         top: -3px;
+         z-index: 10;
+        
+         -webkit-box-shadow: -3px 0px 10px 0px rgba(46, 50, 50, 0.33);
+         -moz-box-shadow:    -3px 0px 10px 0px rgba(46, 50, 50, 0.33);
+         box-shadow:         -3px 0px 10px 0px rgba(46, 50, 50, 0.33);
+         -webkit-border-radius: 5px;
+         -moz-border-radius: 5px;
+         border-radius: 5px;
+         }
+         .size:nth-child(even) {
+         background-color: rgba(0,0,0,0.02);
+         }
+		 
+		 .size {
+		width: 50%;
+		margin: -2px;
+		display: inline-block;
+		border: 1px solid #E9E9E9;
+		text-align: center;
+		}
+		 
+		 
+         .box {  
+         display: none; /* по умолчанию прячем все блоки */  
+         }  
+         .box.visible {  
+         display: block; /* по умолчанию показываем нужный блок */  
+         } 
+		 .section{max-width: 480px; margin: 0 auto;}
+		 
+      </style>
+   </head>
+   <body>
+      <div class="section">
+         <div class="tabs">
+            <div class="btn man current"><i></i>man</div>
+            <div class="btn wooman"><i></i>wooman</div>
+         </div>
+         <div class="body-men box visible">
+            <div class="wrap-tr">
+               <div class="contry">centimeter</div>
+               <!-- centimeter -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">22.8</div>
+                  <div class="size">23.1</div>
+                  <div class="size">23.5</div>
+                  <div class="size">23.8</div>
+                  <div class="size">24.1</div>
+                  <div class="size">24.5</div>
+                  <div class="size">24.8</div>
+                  <div class="size">25.1</div>
+                  <div class="size">25.4</div>
+                  <div class="size">25.7</div>
+                  <div class="size">26</div>
+                  <div class="size">26.3</div>
+                  <div class="size">26.7</div>
+                  <div class="size">27</div>
+                  <div class="size">27.3</div>
+                  <div class="size">27.6</div>
+                  <div class="size">27.9</div>
+                  <div class="size">28.3</div>
+                  <div class="size">28.6</div>
+                  <div class="size">28.9</div>
+                  <div class="size">29.2</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">inch (in)</div>
+               <!-- inch (in) -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">9</div>
+                  <div class="size">9⅛</div>
+                  <div class="size">9¼</div>
+                  <div class="size">9⅜</div>
+                  <div class="size">9½</div>
+                  <div class="size">9⅝</div>
+                  <div class="size">9¾</div>
+                  <div class="size">9⅞</div>
+                  <div class="size">10</div>
+                  <div class="size">10⅛</div>
+                  <div class="size">10¼</div>
+                  <div class="size">10⅜</div>
+                  <div class="size">10½</div>
+                  <div class="size">10⅝</div>
+                  <div class="size">10¾</div>
+                  <div class="size">10⅞</div>
+                  <div class="size">11</div>
+                  <div class="size">11⅛</div>
+                  <div class="size">11¼</div>
+                  <div class="size">11⅜</div>
+                  <div class="size">11½</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">US/Canada</div>
+               <!-- US/Canada  -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">3½</div>
+                  <div class="size">4</div>
+                  <div class="size">4½</div>
+                  <div class="size">5</div>
+                  <div class="size">5½</div>
+                  <div class="size">6</div>
+                  <div class="size">6½</div>
+                  <div class="size">7</div>
+                  <div class="size">7½</div>
+                  <div class="size">8</div>
+                  <div class="size">8½</div>
+                  <div class="size">9</div>
+                  <div class="size">9½</div>
+                  <div class="size">10</div>
+                  <div class="size">10½</div>
+                  <div class="size">11</div>
+                  <div class="size">11½</div>
+                  <div class="size">12</div>
+                  <div class="size">12½</div>
+                  <div class="size">13</div>
+                  <div class="size">13½</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">UK</div>
+               <!-- UK -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">3</div>
+                  <div class="size">3½</div>
+                  <div class="size">4</div>
+                  <div class="size">4½</div>
+                  <div class="size">5</div>
+                  <div class="size">5½</div>
+                  <div class="size">6</div>
+                  <div class="size">6½</div>
+                  <div class="size">7</div>
+                  <div class="size">7½</div>
+                  <div class="size">8</div>
+                  <div class="size">8½</div>
+                  <div class="size">9</div>
+                  <div class="size">9½</div>
+                  <div class="size">10</div>
+                  <div class="size">10½</div>
+                  <div class="size">11</div>
+                  <div class="size">11½</div>
+                  <div class="size">12</div>
+                  <div class="size">12½</div>
+                  <div class="size">13</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">EUR</div>
+               <!-- EUR  -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">35</div>
+                  <div class="size">35½</div>
+                  <div class="size">36</div>
+                  <div class="size">37</div>
+                  <div class="size">37½</div>
+                  <div class="size">38</div>
+                  <div class="size">38½</div>
+                  <div class="size">39</div>
+                  <div class="size">40</div>
+                  <div class="size">41</div>
+                  <div class="size">42</div>
+                  <div class="size">43</div>
+                  <div class="size">43½</div>
+                  <div class="size">44</div>
+                  <div class="size">44½</div>
+                  <div class="size">45</div>
+                  <div class="size">45½</div>
+                  <div class="size">46</div>
+                  <div class="size">46½</div>
+                  <div class="size">47</div>
+                  <div class="size">47½</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Australia/NZ</div>
+               <!-- Australia/NZ -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">3</div>
+                  <div class="size">3½</div>
+                  <div class="size">4</div>
+                  <div class="size">4½</div>
+                  <div class="size">5</div>
+                  <div class="size">5½</div>
+                  <div class="size">6</div>
+                  <div class="size">6½</div>
+                  <div class="size">7</div>
+                  <div class="size">7½</div>
+                  <div class="size">8</div>
+                  <div class="size">8½</div>
+                  <div class="size">9</div>
+                  <div class="size">9½</div>
+                  <div class="size">10</div>
+                  <div class="size">10½</div>
+                  <div class="size">11</div>
+                  <div class="size">11½</div>
+                  <div class="size">12</div>
+                  <div class="size">12½</div>
+                  <div class="size">13</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Japan</div>
+               <!-- Japan -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">21.5</div>
+                  <div class="size">22</div>
+                  <div class="size">22.5</div>
+                  <div class="size">23</div>
+                  <div class="size">23.5</div>
+                  <div class="size">24</div>
+                  <div class="size">24.5</div>
+                  <div class="size">25</div>
+                  <div class="size">25.5</div>
+                  <div class="size">26</div>
+                  <div class="size">26.5</div>
+                  <div class="size">27</div>
+                  <div class="size">27.5</div>
+                  <div class="size">28</div>
+                  <div class="size">28.5</div>
+                  <div class="size">29</div>
+                  <div class="size">29.5</div>
+                  <div class="size">30</div>
+                  <div class="size">30.5</div>
+                  <div class="size">31</div>
+                  <div class="size">31.5</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">China</div>
+               <!-- China -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">35</div>
+                  <div class="size">36</div>
+                  <div class="size">37</div>
+                  <div class="size">38</div>
+                  <div class="size">39</div>
+                  <div class="size">39.5</div>
+                  <div class="size">40</div>
+                  <div class="size">41</div>
+                  <div class="size">-</div>
+                  <div class="size">42</div>
+                  <div class="size">43</div>
+                  <div class="size">43.5</div>
+                  <div class="size">44</div>
+                  <div class="size">44.5</div>
+                  <div class="size">45</div>
+                  <div class="size">46</div>
+                  <div class="size">-</div>
+                  <div class="size">47</div>
+                  <div class="size">47.5</div>
+                  <div class="size">48</div>
+                  <div class="size">-</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Mexico</div>
+               <!-- Mexico  -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">4.5</div>
+                  <div class="size">5</div>
+                  <div class="size">5.5</div>
+                  <div class="size">6</div>
+                  <div class="size">6.5</div>
+                  <div class="size">7</div>
+                  <div class="size">7.5</div>
+                  <div class="size">9</div>
+                  <div class="size">-</div>
+                  <div class="size">10</div>
+                  <div class="size">-</div>
+                  <div class="size">11</div>
+                  <div class="size">-</div>
+                  <div class="size">12.5</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Korea</div>
+               <!-- Korea -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">228</div>
+                  <div class="size">231</div>
+                  <div class="size">235</div>
+                  <div class="size">238</div>
+                  <div class="size">241</div>
+                  <div class="size">245</div>
+                  <div class="size">248</div>
+                  <div class="size">251</div>
+                  <div class="size">254</div>
+                  <div class="size">257</div>
+                  <div class="size">260</div>
+                  <div class="size">263</div>
+                  <div class="size">267</div>
+                  <div class="size">270</div>
+                  <div class="size">273</div>
+                  <div class="size">276</div>
+                  <div class="size">279</div>
+                  <div class="size">283</div>
+                  <div class="size">286</div>
+                  <div class="size">289</div>
+                  <div class="size">292</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Modopoint</div>
+               <!-- Modopoint -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">228</div>
+                  <div class="size">231</div>
+                  <div class="size">235</div>
+                  <div class="size">238</div>
+                  <div class="size">241</div>
+                  <div class="size">245</div>
+                  <div class="size">248</div>
+                  <div class="size">251</div>
+                  <div class="size">254</div>
+                  <div class="size">257</div>
+                  <div class="size">260</div>
+                  <div class="size">263</div>
+                  <div class="size">267</div>
+                  <div class="size">270</div>
+                  <div class="size">273</div>
+                  <div class="size">276</div>
+                  <div class="size">279</div>
+                  <div class="size">283</div>
+                  <div class="size">286</div>
+                  <div class="size">289</div>
+                  <div class="size">292</div>
+               </div>
+            </div>
+         </div>
+         <!-- ///////////////////     WOOMAN     ////////////////////// -->
+         <div class="body-woomen box">
+            <div class="wrap-tr">
+               <div class="contry">centimeter</div>
+               <!-- centimeter -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">22.8</div>
+                  <div class="size">23.1</div>
+                  <div class="size">23.5</div>
+                  <div class="size">23.8</div>
+                  <div class="size">24.1</div>
+                  <div class="size">24.5</div>
+                  <div class="size">24.8</div>
+                  <div class="size">25.1</div>
+                  <div class="size">25.4</div>
+                  <div class="size">25.7</div>
+                  <div class="size">26</div>
+                  <div class="size">26.7</div>
+                  <div class="size">27.3</div>
+                  <div class="size">27.9</div>
+                  <div class="size">28.6</div>
+                  <div class="size">29.2</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">inch (in)</div>
+               <!-- inch (in) -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">9</div>
+                  <div class="size">9⅛</div>
+                  <div class="size">9¼</div>
+                  <div class="size">9⅜</div>
+                  <div class="size">9½</div>
+                  <div class="size">9⅝</div>
+                  <div class="size">9¾</div>
+                  <div class="size">9⅞</div>
+                  <div class="size">10</div>
+                  <div class="size">10⅛</div>
+                  <div class="size">10¼</div>
+                  <div class="size">10½</div>
+                  <div class="size">10¾</div>
+                  <div class="size">11</div>
+                  <div class="size">11¼</div>
+                  <div class="size">11½</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">US/Canada</div>
+               <!-- US/Canada  -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">5</div>
+                  <div class="size">5½</div>
+                  <div class="size">6</div>
+                  <div class="size">6½</div>
+                  <div class="size">7</div>
+                  <div class="size">7½</div>
+                  <div class="size">8</div>
+                  <div class="size">8½</div>
+                  <div class="size">9</div>
+                  <div class="size">9½</div>
+                  <div class="size">10</div>
+                  <div class="size">10½</div>
+                  <div class="size">12</div>
+                  <div class="size">13</div>
+                  <div class="size">14</div>
+                  <div class="size">15½</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">UK</div>
+               <!-- UK -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">2½</div>
+                  <div class="size">3</div>
+                  <div class="size">3½</div>
+                  <div class="size">4</div>
+                  <div class="size">4½</div>
+                  <div class="size">5</div>
+                  <div class="size">5½</div>
+                  <div class="size">6</div>
+                  <div class="size">6½</div>
+                  <div class="size">7</div>
+                  <div class="size">7½</div>
+                  <div class="size">8</div>
+                  <div class="size">9½</div>
+                  <div class="size">10½</div>
+                  <div class="size">11½</div>
+                  <div class="size">13</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">EUR</div>
+               <!-- EUR  -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">35</div>
+                  <div class="size">35½</div>
+                  <div class="size">36</div>
+                  <div class="size">37</div>
+                  <div class="size">37½</div>
+                  <div class="size">38</div>
+                  <div class="size">38½</div>
+                  <div class="size">39</div>
+                  <div class="size">40</div>
+                  <div class="size">41</div>
+                  <div class="size">42</div>
+                  <div class="size">43</div>
+                  <div class="size">44</div>
+                  <div class="size">45</div>
+                  <div class="size">46½</div>
+                  <div class="size">48½</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Australia/NZ</div>
+               <!-- Australia/NZ -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">3½</div>
+                  <div class="size">4</div>
+                  <div class="size">4½</div>
+                  <div class="size">5</div>
+                  <div class="size">5½</div>
+                  <div class="size">6</div>
+                  <div class="size">6½</div>
+                  <div class="size">7</div>
+                  <div class="size">7½</div>
+                  <div class="size">8</div>
+                  <div class="size">8½</div>
+                  <div class="size">9</div>
+                  <div class="size">10½</div>
+                  <div class="size">11½</div>
+                  <div class="size">12½</div>
+                  <div class="size">14</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Japan</div>
+               <!-- Japan -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">21</div>
+                  <div class="size">21.5</div>
+                  <div class="size">22</div>
+                  <div class="size">22.5</div>
+                  <div class="size">23</div>
+                  <div class="size">23.5</div>
+                  <div class="size">24</div>
+                  <div class="size">24.5</div>
+                  <div class="size">25</div>
+                  <div class="size">25.5</div>
+                  <div class="size">26</div>
+                  <div class="size">27</div>
+                  <div class="size">28</div>
+                  <div class="size">29</div>
+                  <div class="size">30</div>
+                  <div class="size">31</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">China</div>
+               <!-- China -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">35</div>
+                  <div class="size">36</div>
+                  <div class="size">37</div>
+                  <div class="size">37.5</div>
+                  <div class="size">38</div>
+                  <div class="size">39</div>
+                  <div class="size">39.5</div>
+                  <div class="size">40</div>
+                  <div class="size">41</div>
+                  <div class="size">41.5</div>
+                  <div class="size">42</div>
+                  <div class="size">43</div>
+                  <div class="size">44.5</div>
+                  <div class="size">46</div>
+                  <div class="size">47</div>
+                  <div class="size">48</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Mexico</div>
+               <!-- Mexico  -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">-</div>
+                  <div class="size">4.5</div>
+                  <div class="size">5</div>
+                  <div class="size">5.5</div>
+                  <div class="size">6</div>
+                  <div class="size">6.5</div>
+                  <div class="size">7</div>
+                  <div class="size">7.5</div>
+                  <div class="size">9</div>
+                  <div class="size">10</div>
+                  <div class="size">11</div>
+                  <div class="size">12.5</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Korea</div>
+               <!-- Korea -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">228</div>
+                  <div class="size">231</div>
+                  <div class="size">235</div>
+                  <div class="size">238</div>
+                  <div class="size">241</div>
+                  <div class="size">245</div>
+                  <div class="size">248</div>
+                  <div class="size">251</div>
+                  <div class="size">254</div>
+                  <div class="size">257</div>
+                  <div class="size">260</div>
+                  <div class="size">267</div>
+                  <div class="size">273</div>
+                  <div class="size">279</div>
+                  <div class="size">286</div>
+                  <div class="size">292</div>
+               </div>
+            </div>
+            <div class="wrap-tr">
+               <div class="contry">Modopoint</div>
+               <!-- Modopoint -->
+               <div class="rez">choose size</div>
+               <div class="group">
+                  <div class="size">228</div>
+                  <div class="size">231</div>
+                  <div class="size">235</div>
+                  <div class="size">238</div>
+                  <div class="size">241</div>
+                  <div class="size">245</div>
+                  <div class="size">248</div>
+                  <div class="size">251</div>
+                  <div class="size">254</div>
+                  <div class="size">257</div>
+                  <div class="size">260</div>
+                  <div class="size">267</div>
+                  <div class="size">273</div>
+                  <div class="size">279</div>
+                  <div class="size">286</div>
+                  <div class="size">292</div>
+               </div>
+            </div>
+         </div>
+      </div>
+	        <script>
+         // function converter
+          $(document).ready(function () {
+         
+           var $contry = $('.contry');  
+           var $rez = $('.rez span');
+         
+             $('.group').on('click', 'div', function() {
+                var t = $(this).text();
+                var n = $(this).index();
+                
+                 $('.group').each(function() {
+                     var element = $($(this).children('.size').get(n));
+                     $(this).parent().children('.rez').html(element.html());
+                 });
+             }); 
+         
+         
+         	// function block size
+         
+         $('.contry, .rez').each(function() {
+         
+              $(this).click(function() {
+         	 $(".group").css("display", "none");
+         	 $(".wrap-tr").css("background-color", "");
+         	 $(this).parent(".wrap-tr").css("background-color", "rgba(255,0,0,1)");
+          $(this).nextAll(".group").css("display", "block");
+             });
+         });
+         
+         $('.group .size').each(function() {
+              $(this).click(function() {
+          $(this).parent(".group").css("display", "none");
+             });
+         });
+         
+         });   
+         	
+          // function tabs
+         
+         (function($) {  
+         $(function() {  
+           
+           $('.tabs').on('click', 'div:not(.current)', function() {  
+             $(this).addClass('current').siblings().removeClass('current')  
+               .parents('div.section').find('div.box').eq($(this).index()).fadeIn(150).siblings('div.box').hide();  
+           })  
+           
+         })  
+         })(jQuery)
+         
+      </script>
+   </body>
+</html>
